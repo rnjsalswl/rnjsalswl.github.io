@@ -2,15 +2,15 @@
 *{margin:0 auto; padding:0;list-style: none;text-decoration: none;}
 #wrap{max-width:95%;}
 a{color:inherit;}
-/*menu*/
-header{position: relative;z-index: 1;height:60px;}
-header #menubar{align-items: center;position: fixed;display:flex;background-color: #fff;width:95%;height:60px;}
-.menu{float:left;}
-.menu{padding:10px;margin:5px;}
-.menu-search{padding:10px;background-color: #ebebeb;border-radius: 30px;margin:0;width:42%;}
-#search{background-color: #ebebeb;border-radius: 30px;border:none;margin:0;}
-.menu:hover{background-color: #ebebeb;border-radius: 30px;color:black;}
 
+
+/*menu*/
+header{position: relative;z-index: 1;height:60px;width:100%;}
+header #menubar{align-items: center;position: fixed;display:flex;background-color: #fff;width:95%;height:60px;}
+.menu{float:left;margin:5px;}
+.ef-menu{padding:10px;}
+.ef-menu:hover{background-color: #ebebeb;border-radius: 30px;color:black;} 
+#search{background-color: #ebebeb;border-radius: 30px;border:none;padding:12px;margin-top:2px;}
 
 /*grid*/
 .grid-item>img{width:100%;max-width:333px;border-radius:30px;margin:10px 0 10px 0;}
@@ -26,6 +26,7 @@ header #menubar{align-items: center;position: fixed;display:flex;background-colo
     left:50%;
 }
 .btn {
+    margin-top:10px;
     height:40px;
     border-radius: 20px;
     border:none;
@@ -70,12 +71,11 @@ header #menubar{align-items: center;position: fixed;display:flex;background-colo
     background-color: #ebebeb;
     width:200px;
 }
-
 #modal .modal-btn, #modal2 .modal-btn{
     background-color:#d6291a;
     color:snow;
     width:100px;    
-    margin-top:10px;
+   
     font-weight: bold;
 }
 #modal .modal-btn:hover, #modal2 .modal-btn:hover{

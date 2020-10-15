@@ -16,12 +16,14 @@
     <div id="wrap">
         <header>
             <!--menu-->
-            <ul id="menubar">
-                <li class="menu menu-left"><a href="#">홈</a></li>
-                <li class="menu-search"><input id="search" type="text" placeholder="검색"></li>
-                <li class="menu" id="modal-open"><a href="#!">로그인</a></li>
-                <li class="menu" id="modal-open2"><a href="register.html"><a href="#!">회원가입</a></a></li>
-            </ul>
+            <div id="menubar">
+                <ul>
+                    <li class="menu ef-menu menu-left" id="homebtn"><a href="#">홈</a></li>
+                    <li class="menu menu-search" id="searchbtn"><input id="search" type="text" placeholder="검색"></li>
+                    <li class="menu ef-menu " id="modal-open"><a href="#!">로그인</a></li>
+                    <li class="menu ef-menu" id="modal-open2"><a href="#!">회원가입</a></li>
+                </ul>
+            </div>
         </header>
         <section id="board-body">
             <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth":50 }'>
@@ -62,13 +64,14 @@
             <div class="modal-content center">
                 <div class="center">
                     <h1>로그인</h1>
-                    <input type="text" class="modal-input btn" placeholder="아이디"/>
-                    <br/>
-                    <input type="text" class="modal-input btn"  placeholder="비밀번호"/>
-                    <div>
-                        <button id="modal-submit" class="modal-btn btn">로그인</button>
-                        <button id="modal-close" class="modal-btn btn">닫기</button>
-                    </div>
+                    <form method="post" name="login">
+                        <input type="text" class="modal-input btn" placeholder="아이디"/>
+                        <input type="password" class="modal-input btn"  placeholder="비밀번호"/>
+                        <div>
+                            <input id="modal-submit" class="modal-btn btn" type="submit" value="로그인" />
+                            <button id="modal-close" class="modal-btn btn">닫기</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -79,13 +82,14 @@
             <div class="modal-content center">
                 <div class="center">
                     <h1>회원가입</h1>
-                    <input type="text" class="modal-input btn" placeholder="아이디"/>
-                    <br/>
-                    <input type="text" class="modal-input btn"  placeholder="비밀번호"/>
-                    <div>
-                        <button id="modal-submit2" class="modal-btn btn">회원가입</button>
-                        <button id="modal-close2" class="modal-btn btn">닫기</button>
-                    </div>
+                    <form method="post" name="register">
+                        <input type="text" class="modal-input btn" placeholder="아이디"/>
+                        <input type="password" class="modal-input btn"  placeholder="비밀번호"/>
+                        <div>
+                            <input id="modal-submit2" class="modal-btn btn" type="submit" value="회원가입">
+                            <button id="modal-close2" class="modal-btn btn">닫기</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

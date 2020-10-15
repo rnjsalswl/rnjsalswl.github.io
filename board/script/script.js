@@ -4,7 +4,7 @@ $(window).load(function(){
     $grid.masonry({
         itemSelector:'.grid-item'
     })
-
+    
     /*로그인*/
     $("#modal-open").click(function(){
         $("#modal").attr("style","display:block");
@@ -22,7 +22,7 @@ $(window).load(function(){
     $("#modal-close2").click(function(){
         $("#modal2").attr("style","display:none");
     });
-})
 
-
+    
+});
 
