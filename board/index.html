@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="script/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
+    <script src="script/script.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header>
+            <!--menu-->
+            <ul id="menubar">
+                <li class="menu menu-left"><a href="#">홈</a></li>
+                <li class="menu-search"><input id="search" type="text" placeholder="검색"></li>
+                <li class="menu" id="modal-open"><a href="#!">로그인</a></li>
+                <li class="menu" id="modal-open2"><a href="register.html"><a href="#!">회원가입</a></a></li>
+            </ul>
+        </header>
+        <section id="board-body">
+            <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth":50 }'>
+                <div class="grid-item">
+                    <img src="https://i.pinimg.com/564x/f1/00/17/f1001756106ec8160f267a08fd31ce75.jpg" />
+                </div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/60/6d/21/606d21db417960fd77d6e35682131a22.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/ea/5d/dc/ea5ddc2135c4b486cef8f0c1db93715e.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/ab/cb/87/abcb87c868c463a0927150002ae4df23.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/0b/12/76/0b127686ea7b820203ec1813c5825584.jpg" /></div>
+                <div class="grid-item">
+                    <img src="https://i.pinimg.com/564x/f1/00/17/f1001756106ec8160f267a08fd31ce75.jpg" />
+                </div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/60/6d/21/606d21db417960fd77d6e35682131a22.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/ea/5d/dc/ea5ddc2135c4b486cef8f0c1db93715e.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/ab/cb/87/abcb87c868c463a0927150002ae4df23.jpg" /></div>
+                <div class="grid-item"><img
+                        src="https://i.pinimg.com/564x/0b/12/76/0b127686ea7b820203ec1813c5825584.jpg" /></div>
+
+            </div>
+        </section>
+        <footer>
+            <!--pagination-->
+
+        </footer>
+    </div>
+    
+    <!--로그인 모달창-->
+    <div id="modal">
+        <div class="modal-layer">
+            <div class="modal-content center">
+                <div class="center">
+                    <h1>로그인</h1>
+                    <input type="text" class="modal-input btn" placeholder="아이디"/>
+                    <br/>
+                    <input type="text" class="modal-input btn"  placeholder="비밀번호"/>
+                    <div>
+                        <button id="modal-submit" class="modal-btn btn">로그인</button>
+                        <button id="modal-close" class="modal-btn btn">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--회원가입 모달창-->
+    <div id="modal2">
+        <div class="modal-layer">
+            <div class="modal-content center">
+                <div class="center">
+                    <h1>회원가입</h1>
+                    <input type="text" class="modal-input btn" placeholder="아이디"/>
+                    <br/>
+                    <input type="text" class="modal-input btn"  placeholder="비밀번호"/>
+                    <div>
+                        <button id="modal-submit2" class="modal-btn btn">회원가입</button>
+                        <button id="modal-close2" class="modal-btn btn">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
