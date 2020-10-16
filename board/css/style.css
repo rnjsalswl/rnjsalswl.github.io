@@ -81,3 +81,7 @@ header #menubar{align-items: center;position: fixed;display:flex;background-colo
 #modal .modal-btn:hover, #modal2 .modal-btn:hover{
     background-color: black;
 }
+
+#if {
+    display:none;
+}
