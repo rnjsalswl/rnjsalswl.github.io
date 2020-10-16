@@ -82,6 +82,3 @@ header #menubar{align-items: center;position: fixed;display:flex;background-colo
     background-color: black;
 }
 
-#if {
-    display:none;
-}
