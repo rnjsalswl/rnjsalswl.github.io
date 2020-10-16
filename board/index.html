@@ -63,14 +63,12 @@
             <div class="modal-content center">
                 <div class="center">
                     <h1>로그인</h1>
-                    <form method="post" name="login"  onsubmit="if(document.getElementById('modal-submit').click()) return false;">
                         <input type="text" class="modal-input btn" placeholder="아이디"/>
                         <input type="password" class="modal-input btn"  placeholder="비밀번호"/>
                         <div>
-                            <input id="modal-submit" class="modal-btn btn" type="submit" value="로그인" />
+                            <input id="modal-submit" class="modal-btn btn" type="button" onclick="document.getElementById('modal').style.display='none';" value="로그인" />
                             <button id="modal-close" class="modal-btn btn">닫기</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -81,14 +79,12 @@
             <div class="modal-content center">
                 <div class="center">
                     <h1>회원가입</h1>
-                    <form method="post" name="register" onsubmit="if(document.getElementById('modal-submit2').click()) return false;">
                         <input type="text" class="modal-input btn" placeholder="아이디"/>
                         <input type="password" class="modal-input btn"  placeholder="비밀번호"/>
                         <div>
-                            <input id="modal-submit2" class="modal-btn btn" type="submit" value="회원가입">
+                            <input id="modal-submit2" class="modal-btn btn" type="button" onclick="document.getElementById('modal2').style.display='none';" value="회원가입">
                             <button id="modal-close2" class="modal-btn btn">닫기</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
