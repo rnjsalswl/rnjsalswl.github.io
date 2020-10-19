@@ -69,7 +69,9 @@ function mkCalendar(year, month){
         cnt +=1;
         if(cnt-not == today.getDate()){
             cell.style.fontWeight="bold";
-            cell.style.color="#8640F3";
+            // cell.style.color="#8640F3";
+            cell.style.backgroundColor="#EDEDED";
+            cell.style.borderRadius="50%";
         }
         if(cnt %7 ==1){
             cell.style.color="#F34054";
