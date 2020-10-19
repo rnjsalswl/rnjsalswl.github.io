@@ -15,15 +15,20 @@ function btnForwardY(){
     mkCalendar(currentYear, currentMonth);
 }
 function btnBackM(){
-    if(currentMonth>1){
-        currentMonth-=1;
+    if(currentMonth == 1){
+        currentMonth=12;
+    }else if(currentMonth>1){
+        currentMonth -=1;
     }
     mkCalendar(currentYear, currentMonth);
 }
 function btnForwardM(){
-    if(currentMonth<12){
+    if(currentMonth==12){
+        currentMonth = 1;
+    }else if(currentMonth<12){
         currentMonth+=1;
-    }
+    } 
+
     mkCalendar(currentYear, currentMonth);
 }
 function mkCalendar(year, month){
@@ -55,8 +60,6 @@ function mkCalendar(year, month){
         cnt +=1;
         not = cnt;
     }
-    console.log(today.getDate());
-
 
     for(i=1;i<=lastDate.getDate(); i++){
         cell = row.insertCell();
