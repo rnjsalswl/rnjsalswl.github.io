@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
-body{max-width:1200px;margin-top:20px;}
+body{max-width:1200px;margin-top:20px;padding:0 10px 0 10px;}
 *{margin: 0 auto; padding: 0;text-align: center;font-family: 'Noto Sans', sans-serif;}
 td{width:60px;height:60px;}
 .Day>td{
@@ -44,4 +44,9 @@ td{width:60px;height:60px;}
 }
 #CalendarM{
     margin:0 10px 0 10px;
+}
+#Calendar td:hover{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color:#EDEDED;
 }
