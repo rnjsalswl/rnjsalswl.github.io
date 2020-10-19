@@ -2,6 +2,9 @@ let today = new Date();
 let currentMonth = today.getMonth()+1;
 let currentYear = today.getFullYear();
 
+
+const todayYear = today.getFullYear();
+const todayMonth =today.getMonth();
 // let btnBackY = document.getElementById("btnBackY");
 // let btnForwardY = document.getElementById("btnForwardY");
 // let btnBackM = document.getElementById("btnBackM");
@@ -80,12 +83,14 @@ function mkCalendar(year, month){
         cell = row.insertCell();
         cell.innerHTML = i;
         cnt +=1;
-        if(cnt-not == today.getDate()){
-            cell.style.fontWeight="bold";
-            // cell.style.color="#8640F3";
-            cell.style.backgroundColor="#EDEDED";
-            cell.style.borderRadius="50%";
+        if(year == todayYear && month == todayMonth+1){
+            if(cnt-not == today.getDate()){
+                cell.style.fontWeight="bold";
+                cell.style.backgroundColor="#EDEDED";
+                cell.style.borderRadius="50%";
+            }
         }
+        
         if(cnt %7 ==1){
             cell.style.color="#F34054";
         }else if(cnt %7 == 0){
@@ -93,6 +98,7 @@ function mkCalendar(year, month){
             row = tbCalendar.insertRow();
         }
     }
+
     for (i = cnt, j = 1; i < 42; i++,j++) {
         cell = row.insertCell();
         cell.innerHTML = j;
