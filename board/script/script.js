@@ -23,6 +23,10 @@ $(window).load(function(){
         $("#modal2").attr("style","display:none");
     });
 
-    
+    $(".grid-item > img").click(function(){
+        var id = this.attr("src");
+        console.log(id);
+        $("#modal2").attr("style","display:block");
+    })
 });
 
