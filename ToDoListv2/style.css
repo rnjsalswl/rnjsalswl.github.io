@@ -8,13 +8,37 @@ td{width:60px;height:60px;}
     font-size:20px;
 }
 #header{
+    padding:20px 20px;
     max-width:436px;
     background-color: #F34054;
     border-radius:20px 20px 0 0;
 }
-
+#header button{
+    border-radius: 30px;
+    border:none;
+    background: none;
+}
+#header button:hover{
+    /* background-color:#D53749; */
+    background-color:#C81D30;
+}
 #wrap{
     max-width:436px;
     border-radius:20px 20px 0 0;
-    box-shadow:0 5px 20px rgba(0, 0, 0, 0.8);
+    box-shadow:0 5px 20px rgba(0, 0, 0, 0.2);
+}
+#header .header-year, #header .header-month {
+    display:flex;
+}
+#header button{
+    flex:2;
+}
+#Calendar{
+    padding:10px;
+}
+#CalendarY{
+    margin:0 10px 0 10px;
+}
+#CalendarM{
+    margin:0 10px 0 10px;
 }
