@@ -17,6 +17,7 @@ function btnForwardY(){
 function btnBackM(){
     if(currentMonth == 1){
         currentMonth=12;
+        currentYear-=1;
     }else if(currentMonth>1){
         currentMonth -=1;
     }
@@ -25,6 +26,7 @@ function btnBackM(){
 function btnForwardM(){
     if(currentMonth==12){
         currentMonth = 1;
+        currentYear+=1;
     }else if(currentMonth<12){
         currentMonth+=1;
     } 
