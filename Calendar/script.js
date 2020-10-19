@@ -2,6 +2,10 @@ let today = new Date();
 let currentMonth = today.getMonth()+1;
 let currentYear = today.getFullYear();
 
+// let btnBackY = document.getElementById("btnBackY");
+// let btnForwardY = document.getElementById("btnForwardY");
+// let btnBackM = document.getElementById("btnBackM");
+// let btnForwardM = document.getElementById("btnForwardM");
 
 window.onload = function(){
     mkCalendar(currentYear, currentMonth);
@@ -36,6 +40,7 @@ function btnForwardM(){
 function mkCalendar(year, month){
     let firstDate = new Date(year,month-1,1);
     let lastDate = new Date(year,month,0);
+    let plastDate = new Date(year,month-1,0);
 
     let tbCalendar = document.getElementById("Calendar");
     let CalendarY = document.getElementById("CalendarY");
@@ -59,10 +64,18 @@ function mkCalendar(year, month){
     var not = 0;
     for(i=0;i<firstDate.getDay();i++){
         cell = row.insertCell();
+        cell.innerHTML=plastDate.getDate()-firstDate.getDay()+1+i;
         cnt +=1;
         not = cnt;
+        cell.style.opacity="0.7";
+        if(cnt %7 ==1){
+            cell.style.color="#F34054";
+        }else if(cnt %7 == 0){
+            cell.style.color="#4054F3";
+            row = tbCalendar.insertRow();
+        }
     }
-
+    
     for(i=1;i<=lastDate.getDate(); i++){
         cell = row.insertCell();
         cell.innerHTML = i;
@@ -80,4 +93,17 @@ function mkCalendar(year, month){
             row = tbCalendar.insertRow();
         }
     }
+    for (i = cnt, j = 1; i < 42; i++,j++) {
+        cell = row.insertCell();
+        cell.innerHTML = j;
+        cell.style.opacity="0.7";
+        cnt += 1;
+        if (cnt % 7 == 1) {
+            cell.style.color = "#F34054";
+        } else if (cnt % 7 == 0) {
+            cell.style.color = "#4054F3";
+            row = tbCalendar.insertRow();
+
+        }
+    }   
 }

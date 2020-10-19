@@ -1,0 +1,101 @@
+// method setting
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      @charset "utf-8";
+
+      /* setting */
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: sans-serif;
+      }
+
+      table {
+         table-layout: fixed;
+         border-collapse: collapse;
+      }
+
+
+      #calendar {
+         display: grid;
+         grid-template-columns: repeat(7, 1fr);
+      }
+
+      #calendar>div {
+         height: 100px;
+      }
+
+      #calendar>div:nth-child(7n+1) {
+         color: red;
+      }
+
+      #calendar>div:nth-child(7n) {
+         color: blue;
+      }
+   </style>
+   <title>공부좀해라</title>
+   <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+   <button id="prev">prev</button>
+   <button id="next">next</button>
+   <div id="calendar"></div>
+   <script>
+      const create = element => document.createElement(element);
+
+      //  setting 
+      const calendar = document.getElementById("calendar");
+      const next = document.getElementById("next");
+      const prev = document.getElementById("prev");
+      const today = new Date();
+      let date = new Date();
+
+
+      next.addEventListener("click", function () {
+         date.setMonth(date.getMonth() + 1);
+         console.log(date.getMonth())
+         render();
+      });
+      prev.addEventListener("click", function () {
+         date.setMonth(date.getMonth() - 1);
+         render();
+      });
+      //  method
+      function render() {
+         calendar.innerHTML = "";
+         let cut = 0;
+         const cFirstday = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+         const cLastdate = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+         const pLastdate = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+         if (cFirstday) {
+            for (let day = pLastdate - cFirstday; day < pLastdate; day++, cut++) {
+               add(day + 1);
+            }
+         }
+         for (let day = 1; day <= cLastdate; day++, cut++) {
+            add(day);
+         }
+         for (let day = 1; cut < 42; day++, cut++) {
+            add(day);
+         }
+         function add(text) {
+            const div = create("div");
+            div.textContent = text;
+            calendar.append(div);
+         }
+      }
+
+      render();
+   </script>
+</body>
+
+</html>
