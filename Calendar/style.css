@@ -64,10 +64,24 @@ td{width:60px;height:60px;}
 
 
 #todoList{
-    margin-top:30px;
+    margin:30px 30px;
 }
-
-
+#todoList h2{
+    margin-bottom:10px;
+}
+#todoList #list>div{
+    display:flex;
+}
+#todoList #list p{
+    text-align: start;
+    flex:6;
+}
+#todoList #list button{
+    flex:1;
+}
+#todoList span{
+    display:none;
+}
 
 
 #todoModal{

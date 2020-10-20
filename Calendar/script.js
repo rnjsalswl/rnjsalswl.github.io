@@ -53,10 +53,14 @@ function btnForwardM(){
 }
 
 function itemDone() {
-    
+    console.log("done!");
 }
 function itemDelete(){
-    
+    let delitem = this.parentNode;
+    let numberofDel = delitem.innerText.split("\n")[0]-1;
+    todolist.splice(todolist.indexOf(numberofDel),1);  //배열에서 삭제
+    delitem.css({display:"none"});
+    k--;
 }
 
 let todolist = new Array();
@@ -64,21 +68,32 @@ let k = 0;
 
 function itemCreate(content){
     let list = document.createElement("div");
+    let span = document.createElement("span");
     let item = document.createElement("p");
     let done = document.createElement("button");
     let del = document.createElement("button");
     
-    todolist[k] = content;
-    k+=1;
+    if (content != null && content != "") {
+        console.log(k);
 
-    console.log(todolist[k]);
-    list.textContent = todolist[k];
-    del.textContent = "X";
-    document.getElementById("list").appendChild(list);
-    list.appendChild(item);
-    list.appendChild(del);
+        todolist[k] = content;
 
-    document.getElementById("input").value = null;
+        console.log(todolist[k]);
+        span.textContent = k+1;
+        item.textContent = todolist[k];
+        del.textContent = "X";
+        done.textContent = "O";
+        document.getElementById("list").appendChild(list);
+        list.appendChild(span);
+        list.appendChild(item);
+        list.appendChild(done).addEventListener("click",itemDone);
+        list.appendChild(del).addEventListener("click",itemDelete);
+        
+        k++;
+
+        document.getElementById("input").value = null;
+    }
+    
 }
 
 
