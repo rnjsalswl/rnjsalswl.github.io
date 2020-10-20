@@ -1,5 +1,7 @@
 let today = new Date();
 
+
+
 let currentMonth = today.getMonth()+1;
 let currentYear = today.getFullYear();
 
@@ -49,6 +51,56 @@ function btnForwardM(){
 
     mkCalendar(currentYear, currentMonth);
 }
+
+function itemDone() {
+    
+}
+function itemDelete(){
+    
+}
+
+let todolist = new Array();
+let k = 0;
+
+function itemCreate(content){
+    let list = document.createElement("div");
+    let item = document.createElement("p");
+    let done = document.createElement("button");
+    let del = document.createElement("button");
+    
+    todolist[k] = content;
+    k+=1;
+
+    console.log(todolist[k]);
+    list.textContent = todolist[k];
+    del.textContent = "X";
+    document.getElementById("list").appendChild(list);
+    list.appendChild(item);
+    list.appendChild(del);
+
+    document.getElementById("input").value = null;
+}
+
+
+function modalOpen(){
+    let modal = document.getElementById("todoModal");
+    let modalSubmit = document.getElementById("modalSubmit");
+    let modalClose = document.getElementById("modalClose");
+    let content = document.getElementById("input");
+
+    modalClose.addEventListener("click",function(){
+        modal.css({display:"none"});
+    })
+    modalSubmit.addEventListener("click",function(){
+        itemCreate(content.value);
+    });
+    modal.css({display:"block"});
+}
+
+
+
+
+
 function mkCalendar(year, month){
     let firstDate = new Date(year,month-1,1);
     let lastDate = new Date(year,month,0);
@@ -89,6 +141,7 @@ function mkCalendar(year, month){
 
         cell = row.insertCell(); //cell 추가
         cell.innerHTML = i; //cell에 숫자(날짜) 추가
+        cell.addEventListener("click", modalOpen);
         cnt +=1; //숫자(날짜) count+1
 
         //오늘 날짜에 .today 주어서 css추가
