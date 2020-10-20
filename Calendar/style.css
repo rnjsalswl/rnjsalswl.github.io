@@ -45,8 +45,19 @@ td{width:60px;height:60px;}
 #CalendarM{
     margin:0 10px 0 10px;
 }
+#Calendar td:first-child{
+    color:#F34054;
+}
+#Calendar td:last-child{
+    color:#407BF3;
+}
 #Calendar td:hover{
     cursor: pointer;
     border-radius: 50%;
     background-color:#EDEDED;
+}
+.today{
+    background-color:#EDEDED;
+    border-radius: 50%;
+    font-weight:bold;
 }
