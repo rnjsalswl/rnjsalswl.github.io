@@ -1,8 +1,8 @@
+
 let today = new Date();
 
 let currentMonth = today.getMonth()+1;
 let currentYear = today.getFullYear();
-
 //오늘 년월
 const todayYear = today.getFullYear();
 const todayMonth =today.getMonth();
@@ -57,8 +57,13 @@ function itemDone() {
 }
 function itemDelete(){
     let delitem = this.parentNode;
+    console.log(delitem);
     let numberofDel = delitem.innerText.split("\n")[0]-1;
-    todolist.splice(todolist.indexOf(numberofDel),1);  //배열에서 삭제
+    console.log(numberofDel);
+
+    todolist.splice(numberofDel,1);  //배열에서 삭제
+    todaylist.splice(numberofDel,1);  //배열에서 삭제
+    
     delitem.css({display:"none"});
     k--;
 }
@@ -67,56 +72,80 @@ let todolist = new Array();
 let todaylist = new Array();
 let k = 0;
 
-function itemCreate(content){
+
+function itemCreate(content, date){
+    
     let list = document.createElement("div");
     let span = document.createElement("span");
     let item = document.createElement("p");
     let done = document.createElement("button");
     let del = document.createElement("button");
-    
+    // console.log(date);
     if (content != null && content != "") {
-        // console.log(k);
 
-        todolist[k] = content; //할일
-        todaylist[k] = today; //오늘날짜
         
-        console.log(todaylist[k]);
-
+        todolist[k] = content; //할일
+        todaylist[k] = date; //오늘날짜
+        
+        // console.log("선택 날짜 : "+todaylist[k]);
+        
         span.textContent = k+1;
         item.textContent = todolist[k];
         del.textContent = "X";
         done.textContent = "O";
+        
         document.getElementById("list").appendChild(list);
         list.appendChild(span);
         list.appendChild(item);
+        
         list.appendChild(done).addEventListener("click",itemDone);
         list.appendChild(del).addEventListener("click",itemDelete);
         
+        // console.log(list.children[1].parentNode);
+        
+        
+        // console.log(todaylist[k]==date);
+        // children[1].parentNode.
+            
         k++;
-
         document.getElementById("input").value = null;
+        
     }
-    
 }
 
-
+let clickDate = null;
+let clickMonth = null;
+let clickYear = null;
 function modalOpen(){
+    
     let modal = document.getElementById("todoModal");
     let modalSubmit = document.getElementById("modalSubmit");
     let modalClose = document.getElementById("modalClose");
     let content = document.getElementById("input");
 
+
+    clickYear = document.getElementById("CalendarY").textContent;
+    clickDate = this.textContent;
+    clickMonth = document.getElementById("CalendarM").textContent;
     modalClose.addEventListener("click",function(){
         modal.css({display:"none"});
     })
-    modalSubmit.addEventListener("click",function(){
-        itemCreate(content.value);
+    
+    modalSubmit.addEventListener("click", function(){
+        itemCreate(content.value , clickYear+clickMonth+clickDate );  
     });
+    content.addEventListener("keydown",function(){
+        if(event.which == 13)
+           itemCreate(content.value , clickYear+clickMonth+clickDate );  
+    })
     modal.css({display:"block"});
 }
 
-
-
+function keyboardClick(){
+    if(event.which == 13){
+        itemCreate(content.value , clickYear+clickMonth+clickDate);
+    }
+}
 
 
 function mkCalendar(year, month){

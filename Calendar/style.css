@@ -94,10 +94,13 @@ td{width:60px;height:60px;}
     color:#fff;
 }
 #todoList span{
-    display:none;
+   color:#fff;
+   opacity: 0;
 }
 
-
+#todoList .show{
+    display:flex;
+}
 #todoModal{
     position: absolute;
     width:100%;
