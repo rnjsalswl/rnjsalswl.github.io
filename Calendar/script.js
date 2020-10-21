@@ -1,7 +1,5 @@
 let today = new Date();
 
-
-
 let currentMonth = today.getMonth()+1;
 let currentYear = today.getFullYear();
 
@@ -53,7 +51,9 @@ function btnForwardM(){
 }
 
 function itemDone() {
-    console.log("done!");
+    let doneitem = this.parentNode;
+    let pTag = document.getElementsByTagName('p');
+    doneitem.css({color:"#bdbdbd"});
 }
 function itemDelete(){
     let delitem = this.parentNode;
@@ -64,6 +64,7 @@ function itemDelete(){
 }
 
 let todolist = new Array();
+let todaylist = new Array();
 let k = 0;
 
 function itemCreate(content){
@@ -74,11 +75,13 @@ function itemCreate(content){
     let del = document.createElement("button");
     
     if (content != null && content != "") {
-        console.log(k);
+        // console.log(k);
 
-        todolist[k] = content;
+        todolist[k] = content; //할일
+        todaylist[k] = today; //오늘날짜
+        
+        console.log(todaylist[k]);
 
-        console.log(todolist[k]);
         span.textContent = k+1;
         item.textContent = todolist[k];
         del.textContent = "X";
