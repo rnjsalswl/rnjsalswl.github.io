@@ -76,8 +76,22 @@ td{width:60px;height:60px;}
     text-align: start;
     flex:6;
 }
+#todoList #list>div{
+    padding-top:10px;
+}
 #todoList #list button{
     flex:1;
+    font-weight: bold;
+    color:#F34054;
+    background: none;
+    /* background-color: #F34054; */
+    border: 2px solid #F34054;
+    border-radius: 20px;
+    margin-left:10px;
+}
+#todoList #list button:hover{
+    background-color:#F34054;
+    color:#fff;
 }
 #todoList span{
     display:none;
