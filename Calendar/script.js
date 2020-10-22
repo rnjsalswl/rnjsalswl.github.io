@@ -83,6 +83,7 @@ function itemCreate(content, date){
     // console.log(date);
     if (content != null && content != "") {
 
+        console.log(date);
         
         todolist[k] = content; //할일
         todaylist[k] = date; //오늘날짜
@@ -101,12 +102,6 @@ function itemCreate(content, date){
         list.appendChild(done).addEventListener("click",itemDone);
         list.appendChild(del).addEventListener("click",itemDelete);
         
-        // console.log(list.children[1].parentNode);
-        
-        
-        // console.log(todaylist[k]==date);
-        // children[1].parentNode.
-            
         k++;
         document.getElementById("input").value = null;
         
