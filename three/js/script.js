@@ -9,16 +9,13 @@ const RADIUS = 5;
 const geometry = new THREE.DodecahedronGeometry(RADIUS, 0);
 const material = new THREE.MeshLambertMaterial({ color: '#8bcdd9' });
 
-const material2 = new THREE.MeshLambertMaterial({ color: '#a8a0de' });
 
 const mesh = new THREE.Mesh(geometry, material);
-const mesh2 = new THREE.Mesh(geometry, material2);
+const mesh2 = mesh.clone();
 
 const pointLight = new THREE.PointLight('#c0b9ed', 2);
 
-pointLight.position.x = 100;
-pointLight.position.y = 100;
-pointLight.position.z = 20;
+pointLight.position.set(100,100,20);
 
 scene.add(pointLight);
 scene.add(mesh);
@@ -26,6 +23,7 @@ scene.add(mesh2);
 
 mesh.position.z = -RADIUS * 10;
 mesh.position.x = -10;
+
 mesh2.position.z = -RADIUS * 10;
 mesh2.position.x = 10;
 
@@ -54,12 +52,13 @@ renderer.render(scene, camera);
 
 function update(){
     const speed = Math.random()/30;
-
+    
     mesh.rotation.x += speed;
     mesh.rotation.y += speed;
     mesh.rotation.z += speed;
-
-    const speed2 = Math.random()/30;
+    
+    const speed2 = Math.random()/20;
+    
     mesh2.rotation.x += speed2;
     mesh2.rotation.y += speed2;
     mesh2.rotation.z += speed2;
