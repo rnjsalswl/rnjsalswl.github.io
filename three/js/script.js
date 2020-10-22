@@ -1,7 +1,7 @@
 const scene = new THREE.Scene();
 
 const renderer = new THREE.WebGLRenderer({
-    alpha: true,
+    // alpha: true,
     antialias: true
 })
 
@@ -28,7 +28,7 @@ mesh2.position.z = -RADIUS * 10;
 mesh2.position.x = 10;
 
 const WIDTH = window.innerWidth;
-const HEIGHT = window.innerHeight - 30;
+const HEIGHT = window.innerHeight;
 
 
 const FIELD_OF_VIEW = 35;
@@ -68,3 +68,4 @@ function update(){
 }
 
 requestAnimationFrame(update);
+

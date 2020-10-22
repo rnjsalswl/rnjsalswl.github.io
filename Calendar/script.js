@@ -6,6 +6,7 @@ let currentYear = today.getFullYear();
 //오늘 년월
 const todayYear = today.getFullYear();
 const todayMonth =today.getMonth();
+
 // let btnBackY = document.getElementById("btnBackY");
 // let btnForwardY = document.getElementById("btnForwardY");
 // let btnBackM = document.getElementById("btnBackM");
@@ -55,6 +56,7 @@ function itemDone() {
     let pTag = document.getElementsByTagName('p');
     doneitem.css({color:"#bdbdbd"});
 }
+
 function itemDelete(){
     let delitem = this.parentNode;
     console.log(delitem);
@@ -83,7 +85,7 @@ function itemCreate(content, date){
     // console.log(date);
     if (content != null && content != "") {
 
-        console.log(date);
+        // console.log(date);
         
         todolist[k] = content; //할일
         todaylist[k] = date; //오늘날짜
@@ -98,16 +100,29 @@ function itemCreate(content, date){
         document.getElementById("list").appendChild(list);
         list.appendChild(span);
         list.appendChild(item);
-        
         list.appendChild(done).addEventListener("click",itemDone);
         list.appendChild(del).addEventListener("click",itemDelete);
+
         
+        for(var v = 0; v<=todaylist.length-1;v++){
+            // console.log(v);
+            if(date == todaylist[v]){
+                hasTodo(date, todolist[v], v);
+            }else {
+                list.parentElement.childNodes[v+1].css({display:"none"});
+                console.log(list.parentElement.childNodes[v+1]);
+            }
+        }
         k++;
         document.getElementById("input").value = null;
         
     }
 }
-
+let dateTodolist = new Array();
+function hasTodo(date, item, num){
+    console.log(date+" - "+item);
+    list.childNodes[num+1].css({display:"flex"});
+}
 let clickDate = null;
 let clickMonth = null;
 let clickYear = null;
