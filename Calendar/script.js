@@ -66,6 +66,7 @@ function itemDelete(){
     todolist.splice(numberofDel,1);  //배열에서 삭제
     todaylist.splice(numberofDel,1);  //배열에서 삭제
     
+    delitem.classList.add("delete");
     delitem.css({display:"none"});
     k--;
 }
@@ -76,7 +77,9 @@ let k = 0;
 
 
 function itemCreate(content, date){
+
     
+
     let list = document.createElement("div");
     let span = document.createElement("span");
     let item = document.createElement("p");
@@ -84,7 +87,6 @@ function itemCreate(content, date){
     let del = document.createElement("button");
     // console.log(date);
     if (content != null && content != "") {
-
         // console.log(date);
         
         todolist[k] = content; //할일
@@ -105,7 +107,6 @@ function itemCreate(content, date){
 
         
         for(var v = 0; v<=todaylist.length-1;v++){
-            // console.log(v);
             if(date == todaylist[v]){
                 hasTodo(date, todolist[v], v);
             }else {
@@ -121,7 +122,10 @@ function itemCreate(content, date){
 let dateTodolist = new Array();
 function hasTodo(date, item, num){
     console.log(date+" - "+item);
-    list.childNodes[num+1].css({display:"flex"});
+    if(list.childNodes[num+1].classList.value!="delete"){
+        console.log(list.childNodes[num+1]);
+        list.childNodes[num+1].css({display:"flex"});
+    }
 }
 let clickDate = null;
 let clickMonth = null;
