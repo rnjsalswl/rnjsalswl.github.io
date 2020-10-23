@@ -56,7 +56,7 @@ function itemDelete(){
     let delitem = this.parentNode;
     console.log(delitem);
     let numberofDel = delitem.innerText.split("\n")[0]-1;
-    console.log(numberofDel);
+    // console.log(numberofDel);
 
     todolist.splice(numberofDel,1);  //배열에서 삭제
     todaylist.splice(numberofDel,1);  //배열에서 삭제
@@ -78,7 +78,8 @@ function itemCreate(content, date){
     let done = document.createElement("button");
     let del = document.createElement("button");
     let tododiv = document.getElementById("list");
-
+    let getDate = parseInt(date.substr(6,2));
+    
     // console.log(date);
 
     let hello = {content};
@@ -104,16 +105,19 @@ function itemCreate(content, date){
         list.appendChild(item);
         list.appendChild(done).addEventListener("click",itemDone);
         list.appendChild(del).addEventListener("click",itemDelete);
+        
 
         tododiv.css({display:"block"});
         for(var v = 0; v<=todaylist.length-1;v++){
             if(date == todaylist[v]){
                 hasTodo(date, todolist[v], v);
+                document.getElementsByTagName("td")[getDate+not-1].css({fontWeight:"bold"});
             }else {
                 list.parentElement.childNodes[v+1].css({display:"none"});
                 console.log(list.parentElement.childNodes[v+1]);
             }
         }
+        
         k++;
         document.getElementById("input").value = null;
         
@@ -123,16 +127,22 @@ function itemCreate(content, date){
 let dateTodolist = new Array();
 function hasTodo(date, item, num){
     console.log(date+" - "+item);
+    let getDate = parseInt(date.substr(6,2));
+    
     if(list.childNodes[num+1].classList.value!="delete"){
         console.log(list.childNodes[num+1]);
         list.childNodes[num+1].css({display:"flex"});
+        // console.log();
+    }else{
+        document.getElementsByTagName("td")[getDate+not-1].css({fontWeight:"normal"});
+
     }
 }
 
 let clickDate = null;
 let clickMonth = null;
 let clickYear = null;
-
+var not = 0;
 function modalOpen(){
     
     let modal = document.getElementById("todoModal");
@@ -197,7 +207,7 @@ function mkCalendar(year, month){
     row = tbCalendar.insertRow(); //개행
 
     var cnt = 0; //날짜
-    var not = 0; //저번 달
+    not = 0; //저번 달
     //월 시작 공백을 채우는 부분
     for(i=0;i<firstDate.getDay();i++){
         cell = row.insertCell();
