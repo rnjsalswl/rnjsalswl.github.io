@@ -86,6 +86,14 @@ function itemCreate(content, date){
     let done = document.createElement("button");
     let del = document.createElement("button");
     // console.log(date);
+
+    const DATE = 20200917;
+
+    let hello = {};
+
+    hello[DATE] = hello[DATE] || {}
+    console.log(hello);
+
     if (content != null && content != "") {
         // console.log(date);
         
@@ -142,6 +150,7 @@ function modalOpen(){
     clickDate = this.textContent;
     clickMonth = document.getElementById("CalendarM").textContent;
     modalClose.addEventListener("click",function(){
+        document.getElementById("input").value = null;
         modal.css({display:"none"});
     })
     
@@ -150,7 +159,11 @@ function modalOpen(){
     });
     content.addEventListener("keydown",function(){
         if(event.which == 13)
-           itemCreate(content.value , clickYear+clickMonth+clickDate );  
+           itemCreate(content.value , clickYear+clickMonth+clickDate );
+        else if(event.which == 27){
+            document.getElementById("input").value = null;
+            modal.css({display:"none"});
+        }
     })
     modal.css({display:"block"});
 }
@@ -158,7 +171,7 @@ function modalOpen(){
 function keyboardClick(){
     if(event.which == 13){
         itemCreate(content.value , clickYear+clickMonth+clickDate);
-    }
+    } 
 }
 
 
