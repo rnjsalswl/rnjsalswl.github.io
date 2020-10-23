@@ -7,11 +7,6 @@ let currentYear = today.getFullYear();
 const todayYear = today.getFullYear();
 const todayMonth =today.getMonth();
 
-// let btnBackY = document.getElementById("btnBackY");
-// let btnForwardY = document.getElementById("btnForwardY");
-// let btnBackM = document.getElementById("btnBackM");
-// let btnForwardM = document.getElementById("btnForwardM");
-
 HTMLElement.prototype.css = function(object){
     const element = this.style;
     for(let k in object){
@@ -75,7 +70,6 @@ let todolist = new Array();
 let todaylist = new Array();
 let k = 0;
 
-
 function itemCreate(content, date){
 
     let list = document.createElement("div");
@@ -83,15 +77,15 @@ function itemCreate(content, date){
     let item = document.createElement("p");
     let done = document.createElement("button");
     let del = document.createElement("button");
+    let tododiv = document.getElementById("list");
+
     // console.log(date);
 
-    const DATE = 20200917;
-
-    let hello = {};
-
-    hello[DATE] = hello[DATE] || {}
+    let hello = {content};
+    
+    hello[date] = hello[date] || {}
     console.log(hello);
-
+    
     if (content != null && content != "") {
         // console.log(date);
         
@@ -111,7 +105,7 @@ function itemCreate(content, date){
         list.appendChild(done).addEventListener("click",itemDone);
         list.appendChild(del).addEventListener("click",itemDelete);
 
-        
+        tododiv.css({display:"block"});
         for(var v = 0; v<=todaylist.length-1;v++){
             if(date == todaylist[v]){
                 hasTodo(date, todolist[v], v);
@@ -145,34 +139,36 @@ function modalOpen(){
     let modalSubmit = document.getElementById("modalSubmit");
     let modalClose = document.getElementById("modalClose");
     let content = document.getElementById("input");
-
+    let tododiv = document.getElementById("list");
+    
 
     clickYear = document.getElementById("CalendarY").textContent;
     clickDate = this.textContent;
-    clickMonth = document.getElementById("CalendarM").textContent;
+    clickMonth = currentMonth;
+    tododiv.css({display:"none"});
     modalClose.addEventListener("click",function(){
         document.getElementById("input").value = null;
         modal.css({display:"none"});
-    })
+        //if 해당 날짜에 todo가 있으면,.,?
+        tododiv.css({display:"none"});
+    });
     
     modalSubmit.addEventListener("click", function(){
         itemCreate(content.value , clickYear+clickMonth+clickDate );  
     });
+
+
     content.addEventListener("keydown",function(){
-        if(event.which == 13)
-           itemCreate(content.value , clickYear+clickMonth+clickDate );
-        else if(event.which == 27){
-            document.getElementById("input").value = null;
-            modal.css({display:"none"});
-        }
+        keyboardClick(content.value);
     })
     modal.css({display:"block"});
 }
 
-function keyboardClick(){
+function keyboardClick(content){
     if(event.which == 13){
-        itemCreate(content.value , clickYear+clickMonth+clickDate);
+        itemCreate(content , clickYear+clickMonth+clickDate);
     }else if(event.which == 27){
+        document.getElementById("input").value = null;
         document.getElementById("todoModal").css({display:"none"});
     }
 }
@@ -192,7 +188,6 @@ function mkCalendar(year, month){
     "July", "August", "September", "October", "November", "December"]
     
     CalendarM.innerHTML = Months[month-1];
-
 
     while (tbCalendar.rows.length >=2){
         tbCalendar.deleteRow(tbCalendar.rows.length-1);
