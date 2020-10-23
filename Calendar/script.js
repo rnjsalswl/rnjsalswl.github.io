@@ -78,8 +78,6 @@ let k = 0;
 
 function itemCreate(content, date){
 
-    
-
     let list = document.createElement("div");
     let span = document.createElement("span");
     let item = document.createElement("p");
@@ -127,6 +125,7 @@ function itemCreate(content, date){
         
     }
 }
+
 let dateTodolist = new Array();
 function hasTodo(date, item, num){
     console.log(date+" - "+item);
@@ -135,9 +134,11 @@ function hasTodo(date, item, num){
         list.childNodes[num+1].css({display:"flex"});
     }
 }
+
 let clickDate = null;
 let clickMonth = null;
 let clickYear = null;
+
 function modalOpen(){
     
     let modal = document.getElementById("todoModal");
@@ -171,7 +172,9 @@ function modalOpen(){
 function keyboardClick(){
     if(event.which == 13){
         itemCreate(content.value , clickYear+clickMonth+clickDate);
-    } 
+    }else if(event.which == 27){
+        document.getElementById("todoModal").css({display:"none"});
+    }
 }
 
 
