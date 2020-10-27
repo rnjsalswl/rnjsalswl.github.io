@@ -1,59 +1,96 @@
 
 let today = new Date();
 
-let currentMonth = today.getMonth()+1;
+let currentMonth = today.getMonth() + 1;
 let currentYear = today.getFullYear();
 //오늘 년월
 const todayYear = today.getFullYear();
-const todayMonth =today.getMonth();
+const todayMonth = today.getMonth();
 
-HTMLElement.prototype.css = function(object){
+HTMLElement.prototype.css = function (object) {
     const element = this.style;
-    for(let k in object){
-       element[k] = object[k];
+    for (let k in object) {
+        element[k] = object[k];
     }
     return this;
- }
+}
 
-window.onload = function(){
+window.onload = function () {
     mkCalendar(currentYear, currentMonth);
+
+    var inputTodo = document.getElementById("inputTodo");
+
+    //create
+    inputTodo.onkeydown = function (event) {
+        if (event.key =="Enter") {
+            console.log(inputTodo.value);
+        }
+    }
+
+}
+
+//todolist
+let todo = [];
+let todolist = {
+    todo: todo
+};
+
+
+
+
+//edit
+function editTodo() {
+
+}
+
+
+//delete
+function deleteTodo() {
+
+}
+
+
+
+//complete
+function completeTodo() {
+
 }
 
 // 날짜 변경
-function btnBackY(){
-    currentYear-=1;
+function btnBackY() {
+    currentYear -= 1;
     mkCalendar(currentYear, currentMonth);
 }
-function btnForwardY(){
-    currentYear+=1;
+function btnForwardY() {
+    currentYear += 1;
     mkCalendar(currentYear, currentMonth);
 }
-function btnBackM(){
-    if(currentMonth == 1){
-        currentMonth=12;
-        currentYear-=1;
-    }else if(currentMonth>1){
-        currentMonth -=1;
+function btnBackM() {
+    if (currentMonth == 1) {
+        currentMonth = 12;
+        currentYear -= 1;
+    } else if (currentMonth > 1) {
+        currentMonth -= 1;
     }
     mkCalendar(currentYear, currentMonth);
 }
-function btnForwardM(){
-    if(currentMonth==12){
+function btnForwardM() {
+    if (currentMonth == 12) {
         currentMonth = 1;
-        currentYear+=1;
-    }else if(currentMonth<12){
-        currentMonth+=1;
-    } 
+        currentYear += 1;
+    } else if (currentMonth < 12) {
+        currentMonth += 1;
+    }
 
     mkCalendar(currentYear, currentMonth);
 }
 
 //캘린더 생성
 var not = 0;
-function mkCalendar(year, month){
-    let firstDate = new Date(year,month-1,1);
-    let lastDate = new Date(year,month,0);
-    let plastDate = new Date(year,month-1,0);
+function mkCalendar(year, month) {
+    let firstDate = new Date(year, month - 1, 1);
+    let lastDate = new Date(year, month, 0);
+    let plastDate = new Date(year, month - 1, 0);
 
     let tbCalendar = document.getElementById("Calendar");
     let CalendarY = document.getElementById("CalendarY");
@@ -61,12 +98,12 @@ function mkCalendar(year, month){
     CalendarY.innerHTML = year;
 
     let Months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"]
-    
-    CalendarM.innerHTML = Months[month-1];
+        "July", "August", "September", "October", "November", "December"]
 
-    while (tbCalendar.rows.length >=2){
-        tbCalendar.deleteRow(tbCalendar.rows.length-1);
+    CalendarM.innerHTML = Months[month - 1];
+
+    while (tbCalendar.rows.length >= 2) {
+        tbCalendar.deleteRow(tbCalendar.rows.length - 1);
     }
 
     let row = null;
@@ -74,73 +111,40 @@ function mkCalendar(year, month){
     var cnt = 0; //날짜
     not = 0; //저번 달
     //월 시작 공백을 채우는 부분
-    for(i=0;i<firstDate.getDay();i++){
+    for (i = 0; i < firstDate.getDay(); i++) {
         cell = row.insertCell();
-        cell.innerHTML=plastDate.getDate()-firstDate.getDay()+1+i;
-        cnt +=1;
+        cell.innerHTML = plastDate.getDate() - firstDate.getDay() + 1 + i;
+        cnt += 1;
         not = cnt;
-        cell.css({opacity:"0.7"});
-        if(cnt %7 == 0) // 개행
+        cell.css({ opacity: "0.7" });
+        if (cnt % 7 == 0) // 개행
             row = tbCalendar.insertRow();
     }
     //이번달
-    for(i=1;i<=lastDate.getDate(); i++){
+    for (i = 1; i <= lastDate.getDate(); i++) {
 
         cell = row.insertCell(); //cell 추가
         cell.innerHTML = i; //cell에 숫자(날짜) 추가
-        cnt +=1; //숫자(날짜) count+1
+        cnt += 1; //숫자(날짜) count+1
 
         //오늘 날짜에 .today 주어서 css추가
-        if(year == todayYear && month == todayMonth+1){
-            if(cnt-not == today.getDate()){
+        if (year == todayYear && month == todayMonth + 1) {
+            if (cnt - not == today.getDate()) {
                 cell.classList.add("today");
             }
         }
 
-        if(cnt %7 == 0)// 개행
+        if (cnt % 7 == 0)// 개행
             row = tbCalendar.insertRow();
     }
     //cell을 7*6으로 만들어서 높이 고정
-    for (i = cnt, j = 1; i < 42; i++,j++) { //j는 다음 달
+    for (i = cnt, j = 1; i < 42; i++, j++) { //j는 다음 달
         cell = row.insertCell();
         cell.innerHTML = j;
-        cell.css({opacity:"0.7"});
+        cell.css({ opacity: "0.7" });
         cnt += 1;
         if (cnt % 7 == 0)// 개행
             row = tbCalendar.insertRow();
-    }   
-}
-
-//todolist
-let todo = [];
-let todolist = {
-        todo: todo
-    };
-const inputTodo = document.getElementById("inputTodo");
-
-//create
-inputTodo.addEventListener("keydown", function () {
-    if (event.which == 13) {
-        console.log(inputTodo.value);
     }
-})
-
-
-
-//edit
-function editTodo(){
-
 }
 
-
-//delete
-function deleteTodo(){
-
-}
-
-
-
-//complete
-function completeTodo(){
-
-}
