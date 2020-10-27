@@ -18,7 +18,7 @@ HTMLElement.prototype.css = function (object) {
 window.onload = function () {
     mkCalendar(currentYear, currentMonth);
 
-    var inputTodo = document.getElementById("inputTodo");
+    let inputTodo = document.getElementById("inputTodo");
 
     //create
     inputTodo.onkeydown = function (event) {
