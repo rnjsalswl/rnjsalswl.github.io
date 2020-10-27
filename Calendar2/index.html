@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calendar Todo</title>
-    <script src="script.js"></script>
+    <title>Document</title>
     <link href="style.css" rel="stylesheet" />
+    <script src="script.js"></script>
 </head>
 <body>
-    <div id="wrap">
+    <div id="CalendarWrap">
         <div id="header">
             <div class="header-year">
                 <button id="btnbackY" onclick="btnBackY();">&#60;</button>
@@ -34,21 +33,12 @@
             </tr>
         </table>
     </div>
-    <div id="todoModal">
-        <div class="innerModal">
-            <h1>TODO</h1>
-            <input type="text" id="input" placeholder="할 일을 적어주세요." autofocus="autofocus"/>
-            <div id="todoList">
-                <h2>List</h2>
-                <div id="list">
-                </div>
-            </div>
-            <div class="btn-bottom">
-                <button id="modalClose">close</button>
-                <button id="modalSubmit">submit</button>
-            </div>
+    <div id="todolist">
+        <h1>Todos</h1>
+        <input type="text" id="inputTodo">
+        <div>
+            
         </div>
     </div>
 </body>
-
 </html>

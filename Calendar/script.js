@@ -54,7 +54,7 @@ function itemDone() {
 
 function itemDelete(){
     let delitem = this.parentNode;
-    console.log(delitem);
+    // console.log(delitem);
     let numberofDel = delitem.innerText.split("\n")[0]-1;
     // console.log(numberofDel);
 
@@ -82,10 +82,7 @@ function itemCreate(content, date){
     
     // console.log(date);
 
-    let hello = {content};
     
-    hello[date] = hello[date] || {}
-    console.log(hello);
     
     if (content != null && content != "") {
         // console.log(date);
@@ -114,7 +111,7 @@ function itemCreate(content, date){
                 document.getElementsByTagName("td")[getDate+not-1].css({fontWeight:"bold"});
             }else {
                 list.parentElement.childNodes[v+1].css({display:"none"});
-                console.log(list.parentElement.childNodes[v+1]);
+                // console.log(list.parentElement.childNodes[v+1]);
             }
         }
         
@@ -126,11 +123,11 @@ function itemCreate(content, date){
 
 let dateTodolist = new Array();
 function hasTodo(date, item, num){
-    console.log(date+" - "+item);
+    // console.log(date+" - "+item);
     let getDate = parseInt(date.substr(6,2));
     
     if(list.childNodes[num+1].classList.value!="delete"){
-        console.log(list.childNodes[num+1]);
+        // console.log(list.childNodes[num+1]);
         list.childNodes[num+1].css({display:"flex"});
         // console.log();
     }else{
@@ -155,34 +152,41 @@ function modalOpen(){
     clickYear = document.getElementById("CalendarY").textContent;
     clickDate = this.textContent;
     clickMonth = currentMonth;
+
     tododiv.css({display:"none"});
+
     modalClose.addEventListener("click",function(){
         document.getElementById("input").value = null;
         modal.css({display:"none"});
         //if 해당 날짜에 todo가 있으면,.,?
         tododiv.css({display:"none"});
     });
-    
+
     modalSubmit.addEventListener("click", function(){
         itemCreate(content.value , clickYear+clickMonth+clickDate );  
     });
-
-
     content.addEventListener("keydown",function(){
-        keyboardClick(content.value);
+        modalCloseK();
+        modalOpenK(content.value);
     })
+
     modal.css({display:"block"});
 }
 
-function keyboardClick(content){
+function modalOpenK(content){
     if(event.which == 13){
         itemCreate(content , clickYear+clickMonth+clickDate);
-    }else if(event.which == 27){
-        document.getElementById("input").value = null;
-        document.getElementById("todoModal").css({display:"none"});
     }
 }
 
+function modalCloseK(){
+    document.getElementById("todoModal").addEventListener("keydown",function(){
+        if(event.which == 27){
+            document.getElementById("input").value = null;
+            document.getElementById("todoModal").css({display:"none"});
+        }
+    });
+}
 
 function mkCalendar(year, month){
     let firstDate = new Date(year,month-1,1);
@@ -205,7 +209,6 @@ function mkCalendar(year, month){
 
     let row = null;
     row = tbCalendar.insertRow(); //개행
-
     var cnt = 0; //날짜
     not = 0; //저번 달
     //월 시작 공백을 채우는 부분
