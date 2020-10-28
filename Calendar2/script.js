@@ -3,6 +3,7 @@ let today = new Date();
 
 let currentMonth = today.getMonth() + 1;
 let currentYear = today.getFullYear();
+
 //오늘 년월
 const todayYear = today.getFullYear();
 const todayMonth = today.getMonth();
@@ -17,26 +18,87 @@ HTMLElement.prototype.css = function (object) {
 
 window.onload = function () {
     mkCalendar(currentYear, currentMonth);
-
-    let inputTodo = document.getElementById("inputTodo");
-
-    //create
     inputTodo.onkeydown = function (event) {
-        if (event.key =="Enter") {
-            console.log(inputTodo.value);
+        if (event.key == "Enter") {
+            alert("날짜를 선택해 주세요.")
+        }
+    }
+}
+
+//todolist
+let idx = 0;
+let todo = {};
+let item = [];
+
+// let item = Array.from(Array(365), ()=> Array(20));
+// console.log(item);
+//create
+function createTodo() {
+    const inputTodo = document.getElementById("inputTodo");
+    let selectedDate = this;
+    let selectedTd = currentYear + currentMonth + selectedDate.textContent;
+    const $list = document.getElementById("list");
+    inputTodo.onkeydown = function (event) {
+        if (event.key == "Enter") {
+            if (inputTodo.value != null && inputTodo.value != "") {
+               
+                todo.data =item;
+                
+                item[idx] = new Object;
+                item[idx].memo= inputTodo.value;
+                item[idx].active= false;
+                item[idx].date = selectedTd;
+
+                console.log(todo.data[idx].date);
+                createItem(selectedDate);
+                
+                //item create
+                console.log(todo);
+            } else {
+                alert("내용을 입력해주세요");
+            }
+        }
+    }
+    for(let i=0; i<idx; i++){
+        if(todo.data[i].date != selectedTd){
+            console.log(i);
+            console.log($list.childNodes[i+1]);
+            $list.childNodes[i+1].css({display:"none"});
+            // div[i] 내용만 show ! => hide
+        }else{
+            console.log($list.childNodes[i+1]);
+            $list.childNodes[i+1].css({display:"flex"});
         }
     }
 
 }
 
-//todolist
-let todo = [];
-let todolist = {
-    todo: todo
-};
+function createItem(selectedDate) {
+    let todoItem = document.createElement("div");
+    let itemText = document.createElement("p");
+    let listDiv = document.getElementById("list");
 
+    //객체 안에 배열에 value 넣음
+    // todo[idx] = inputTodo.value;
 
+    //itemText에 value 넣음
+    itemText.textContent = inputTodo.value;
+    //item 생성
+    
+        listDiv.appendChild(todoItem);
+        todoItem.appendChild(document.createElement("div")).classList.add("circle");
+        todoItem.appendChild(itemText);
 
+    //todo가 있는 부분
+    selectedDate.classList.add("hasTodo");
+
+    //완료
+    todoItem.addEventListener("click", completeTodo);
+
+    inputTodo.value = "";
+
+    idx++;
+}
 
 //edit
 function editTodo() {
@@ -49,11 +111,11 @@ function deleteTodo() {
 
 }
 
-
-
 //complete
 function completeTodo() {
-
+    // const img = document.createElement("img");
+    // img.setAttribute("src", "tick.png");
+    // this.childNodes[0].appendChild(img);
 }
 
 // 날짜 변경
@@ -125,6 +187,7 @@ function mkCalendar(year, month) {
 
         cell = row.insertCell(); //cell 추가
         cell.innerHTML = i; //cell에 숫자(날짜) 추가
+        cell.addEventListener("click", createTodo);
         cnt += 1; //숫자(날짜) count+1
 
         //오늘 날짜에 .today 주어서 css추가

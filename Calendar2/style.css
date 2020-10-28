@@ -14,7 +14,7 @@ td{width:60px;height:60px;}
     color:snow;
     padding:20px 20px;
     max-width:436px;
-    background-color: #F34054;
+    background-color: #8bcdcd;
     border-radius:20px 20px 0 0;
 }
 #header button{
@@ -26,7 +26,7 @@ td{width:60px;height:60px;}
 }
 #header button:hover{
     /* background-color:#D53749; */
-    background-color:#C81D30;
+    background-color:#3797a4;
 }
 
 
@@ -63,7 +63,7 @@ td{width:60px;height:60px;}
     background-color:#EDEDED;
 }
 .today{
-    background-color:#EDEDED;
+    background-color:#8bcdcd!important;
     border-radius: 50%;
     font-weight:bold;
 }
@@ -73,11 +73,41 @@ td{width:60px;height:60px;}
 /*todoslit*/
 
 #todolist{
-    max-width:436px;
+    max-width:410px;
 }
-#inputTodo{
+#todolist #inputTodo{
     width:100%;   
     height:40px;
     font-size:20px;
     border-radius: 20px;
+}
+#todolist #list{
+    margin-top:10px;
+}
+
+#list>div {
+    height:40px;
+    display: flex;
+    align-items: center;
+}
+#list .circle{
+    margin: 0;
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    /* background-color: #000;*/
+    border:2px solid black;
+}
+.hasTodo{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color:#EDEDED;
+}
+
+#list .circle img{
+    /* -webkit-filter: opacity(.6) drop-shadow(0 0 0 #cee397);
+    filter: opacity(.6) drop-shadow(0 0 0 #cee397); */
+    padding-top:4px;
+    width:18px;
+    height:18px;
 }
