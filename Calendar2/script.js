@@ -49,11 +49,11 @@ function createTodo() {
                 item[idx].active= false;
                 item[idx].date = selectedTd;
 
-                console.log(todo.data[idx].date);
+                // console.log(todo.data[idx].date);
                 createItem(selectedDate);
                 
                 //item create
-                console.log(todo);
+                // console.log(todo);
             } else {
                 alert("내용을 입력해주세요");
             }
@@ -61,12 +61,12 @@ function createTodo() {
     }
     for(let i=0; i<idx; i++){
         if(todo.data[i].date != selectedTd){
-            console.log(i);
-            console.log($list.childNodes[i+1]);
+            // console.log(i);
+            // console.log($list.childNodes[i+1]);
             $list.childNodes[i+1].css({display:"none"});
             // div[i] 내용만 show ! => hide
         }else{
-            console.log($list.childNodes[i+1]);
+            // console.log($list.childNodes[i+1]);
             $list.childNodes[i+1].css({display:"flex"});
         }
     }
@@ -91,7 +91,6 @@ function createItem(selectedDate) {
 
     //todo가 있는 부분
     selectedDate.classList.add("hasTodo");
-
     //완료
     todoItem.addEventListener("click", completeTodo);
 
@@ -113,9 +112,7 @@ function deleteTodo() {
 
 //complete
 function completeTodo() {
-    // const img = document.createElement("img");
-    // img.setAttribute("src", "tick.png");
-    // this.childNodes[0].appendChild(img);
+    this.childNodes[0].css({backgroundColor:"#8bcdcd"});
 }
 
 // 날짜 변경
