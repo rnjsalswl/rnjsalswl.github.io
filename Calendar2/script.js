@@ -41,17 +41,17 @@ function createTodo() {
     inputTodo.onkeydown = function (event) {
         if (event.key == "Enter") {
             if (inputTodo.value != null && inputTodo.value != "") {
-               
-                todo.data =item;
-                
+
+                todo.data = item;
+
                 item[idx] = new Object;
-                item[idx].memo= inputTodo.value;
-                item[idx].active= false;
+                item[idx].memo = inputTodo.value;
+                item[idx].active = false;
                 item[idx].date = selectedTd;
 
                 // console.log(todo.data[idx].date);
                 createItem(selectedDate);
-                
+
                 //item create
                 // console.log(todo);
             } else {
@@ -59,15 +59,15 @@ function createTodo() {
             }
         }
     }
-    for(let i=0; i<idx; i++){
-        if(todo.data[i].date != selectedTd){
+    for (let i = 0; i < idx; i++) {
+        if (todo.data[i].date != selectedTd) {
             // console.log(i);
             // console.log($list.childNodes[i+1]);
-            $list.childNodes[i+1].css({display:"none"});
+            $list.childNodes[i + 1].css({ display: "none" });
             // div[i] 내용만 show ! => hide
-        }else{
+        } else {
             // console.log($list.childNodes[i+1]);
-            $list.childNodes[i+1].css({display:"flex"});
+            $list.childNodes[i + 1].css({ display: "flex" });
         }
     }
 
@@ -84,20 +84,32 @@ function createItem(selectedDate) {
     //itemText에 value 넣음
     itemText.textContent = inputTodo.value;
     //item 생성
-    
-        listDiv.appendChild(todoItem);
-        todoItem.appendChild(document.createElement("div")).classList.add("circle");
-        todoItem.appendChild(itemText);
+
+    listDiv.appendChild(todoItem);
+    todoItem.appendChild(document.createElement("div")).classList.add("circle");
+    todoItem.appendChild(itemText);
 
     //todo가 있는 부분
     selectedDate.classList.add("hasTodo");
     //완료
-    todoItem.addEventListener("click", completeTodo);
+
+    let circle = listDiv.children[idx].children[0];
+
+    let active = item[idx];
+
+    circle.addEventListener("click", function () {
+        circle.css({ backgroundColor: active ? "#8bcdcd" : "#DEDEDE" });
+        active = !active;
+        console.log(active);
+    });
+    //complete
 
     inputTodo.value = "";
 
     idx++;
 }
+
+
 
 //edit
 function editTodo() {
@@ -110,10 +122,7 @@ function deleteTodo() {
 
 }
 
-//complete
-function completeTodo() {
-    this.childNodes[0].css({backgroundColor:"#8bcdcd"});
-}
+
 
 // 날짜 변경
 function btnBackY() {
