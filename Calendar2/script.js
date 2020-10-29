@@ -94,7 +94,6 @@ function createItem(selectedDate) {
     //완료
 
     let circle = listDiv.children[idx].children[0];
-
     let active = item[idx];
 
     circle.addEventListener("click", function () {
@@ -103,7 +102,6 @@ function createItem(selectedDate) {
         console.log(active);
     });
     //complete
-
     inputTodo.value = "";
 
     idx++;
@@ -119,7 +117,7 @@ function editTodo() {
 
 //delete
 function deleteTodo() {
-
+    alert("hi")
 }
 
 
