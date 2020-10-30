@@ -1,4 +1,3 @@
-
 let today = new Date();
 
 let currentMonth = today.getMonth() + 1;
@@ -28,8 +27,8 @@ window.onload = function () {
 
 //edit
 function editTodo() {
-    let content = this.children[1].textContent;
-    let contentDiv = this.children[1];
+    let content = this.children[2].textContent;
+    let contentDiv = this.children[2];
     inputTodo.value = content;
 
     inputTodo.onkeydown = function (event) {
@@ -74,14 +73,12 @@ function createTodo() {
             }
         }
     }
+    //수정해야하는 부분
     for (let i = 0; i < idx; i++) {
         if (todo.data[i].date != selectedTd) {
-            // console.log(i);
-            // console.log($list.childNodes[i+1]);
             $list.childNodes[i + 1].css({ display: "none" });
             // div[i] 내용만 show ! => hide
         } else {
-            // console.log($list.childNodes[i+1]);
             $list.childNodes[i + 1].css({ display: "flex" });
         }
     }
@@ -93,15 +90,13 @@ function createItem(selectedDate) {
     let itemText = document.createElement("p");
     let listDiv = document.getElementById("list");
 
-    //객체 안에 배열에 value 넣음
-    // todo[idx] = inputTodo.value;
-
     //itemText에 value 넣음
     itemText.textContent = inputTodo.value;
     //item 생성
 
     listDiv.appendChild(todoItem);
     todoItem.appendChild(document.createElement("div")).classList.add("circle");
+    todoItem.appendChild(document.createElement("div")).classList.add("circle2");
     todoItem.appendChild(itemText);
 
     //todo가 있는 부분
@@ -109,6 +104,7 @@ function createItem(selectedDate) {
     //완료
 
     let circle = listDiv.children[idx].children[0];
+    let circle2 = listDiv.children[idx].children[1];
     let active = item[idx];
 
     let itemList = listDiv.children;
@@ -120,7 +116,12 @@ function createItem(selectedDate) {
     circle.addEventListener("click", function () {
         circle.css({ backgroundColor: active ? "#8bcdcd" : "#DEDEDE" });
         active = !active;
-        // console.log(active);
+    });
+
+    //delete
+    circle2.addEventListener("click", function(){
+        listDiv.removeChild(this.parentNode);
+        console.log(item);
     });
 
     //complete
@@ -128,16 +129,6 @@ function createItem(selectedDate) {
 
     idx++;
 }
-
-
-
-
-
-//delete
-function deleteTodo() {
-    alert("hi");
-}
-
 
 
 // 날짜 변경
