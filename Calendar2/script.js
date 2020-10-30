@@ -18,9 +18,24 @@ HTMLElement.prototype.css = function (object) {
 
 window.onload = function () {
     mkCalendar(currentYear, currentMonth);
+    
     inputTodo.onkeydown = function (event) {
         if (event.key == "Enter") {
-            alert("날짜를 선택해 주세요.")
+            alert("날짜를 선택해 주세요.");
+        }
+    }
+}
+
+//edit
+function editTodo() {
+    let content = this.children[1].textContent;
+    let contentDiv = this.children[1];
+    inputTodo.value = content;
+
+    inputTodo.onkeydown = function (event) {
+        if (event.key == "Enter") {
+            contentDiv.innerHTML = inputTodo.value;
+            this.value="";
         }
     }
 }
@@ -96,11 +111,18 @@ function createItem(selectedDate) {
     let circle = listDiv.children[idx].children[0];
     let active = item[idx];
 
+    let itemList = listDiv.children;
+
+    for(let i=0;i<=idx;i++){
+        itemList[i].addEventListener("dblclick", editTodo);
+    }
+
     circle.addEventListener("click", function () {
         circle.css({ backgroundColor: active ? "#8bcdcd" : "#DEDEDE" });
         active = !active;
-        console.log(active);
+        // console.log(active);
     });
+
     //complete
     inputTodo.value = "";
 
@@ -109,15 +131,11 @@ function createItem(selectedDate) {
 
 
 
-//edit
-function editTodo() {
-
-}
 
 
 //delete
 function deleteTodo() {
-    alert("hi")
+    alert("hi");
 }
 
 
