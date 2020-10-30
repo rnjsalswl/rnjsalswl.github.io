@@ -33,9 +33,14 @@ function editTodo() {
 
     inputTodo.onkeydown = function (event) {
         if (event.key == "Enter") {
-            contentDiv.innerHTML = inputTodo.value;
-            this.value="";
+            if (inputTodo.value != null && inputTodo.value != ""){
+                contentDiv.innerHTML = inputTodo.value;
+                this.value="";
+            }else{
+                alert("내용을 입력해주세요");        
+            }   
         }
+        return;
     }
 }
 
@@ -73,6 +78,7 @@ function createTodo() {
             }
         }
     }
+
     //수정해야하는 부분
     for (let i = 0; i < idx; i++) {
         if (todo.data[i].date != selectedTd) {
@@ -101,6 +107,8 @@ function createItem(selectedDate) {
 
     //todo가 있는 부분
     selectedDate.classList.add("hasTodo");
+    console.log();
+
     //완료
 
     let circle = listDiv.children[idx].children[0];
@@ -109,10 +117,12 @@ function createItem(selectedDate) {
 
     let itemList = listDiv.children;
 
+    //수정
     for(let i=0;i<=idx;i++){
         itemList[i].addEventListener("dblclick", editTodo);
     }
 
+    //complete
     circle.addEventListener("click", function () {
         circle.css({ backgroundColor: active ? "#8bcdcd" : "#DEDEDE" });
         active = !active;
@@ -121,10 +131,16 @@ function createItem(selectedDate) {
     //delete
     circle2.addEventListener("click", function(){
         listDiv.removeChild(this.parentNode);
-        console.log(item);
+        for(let i=0;i<idx;i++){
+            //날짜와 데이터가 같은 값인 원소 삭제
+            if(item[i].date == currentYear+currentMonth+selectedDate.textContent && this.parentNode.childNodes[2].textContent == item[i].memo){
+                item.splice(i,1);
+                console.log(item);
+                idx--;
+            }
+        }
     });
 
-    //complete
     inputTodo.value = "";
 
     idx++;
