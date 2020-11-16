@@ -60,19 +60,14 @@ function createTodo() {
     inputTodo.onkeydown = function (event) {
         if (event.key == "Enter") {
             if (inputTodo.value != null && inputTodo.value != "") {
+                    todo.data = item;
+                
+                    item[idx] = new Object;
+                    item[idx].memo = inputTodo.value;
+                    item[idx].active = false;
+                    item[idx].date = selectedTd;
 
-                todo.data = item;
-
-                item[idx] = new Object;
-                item[idx].memo = inputTodo.value;
-                item[idx].active = false;
-                item[idx].date = selectedTd;
-
-                // console.log(todo.data[idx].date);
-                createItem(selectedDate);
-
-                //item create
-                // console.log(todo);
+                    createItem(selectedDate);
             } else {
                 alert("내용을 입력해주세요");
             }

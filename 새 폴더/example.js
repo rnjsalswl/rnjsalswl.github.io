@@ -1,0 +1,12 @@
+const menuList = ["부대찌개", "김치찌개", "제육볶음", "카레",
+ "순두부찌개", "떡볶이", "샌드위치"];
+
+window.onload = function () {
+    randMenu();
+}
+
+function randMenu() {
+    const $menuText = document.getElementById("text");
+    const i = Math.floor(Math.random()*6);
+    $menuText.textContent = menuList[i];
+}
