@@ -16,11 +16,30 @@
             width: 300px;
         }
 
-        #text {
+        #Text {
             font-size: 30px;
             width: 300px;
             height: 50px;
-            background-color: cadetblue;
+            /* background-color: cadetblue; */
+        }
+        button{
+            width:calc(300px/2);
+            height:40px;
+            border-radius: 20px;
+            font-size:25px;
+            color:snow;
+            border:none;
+            margin-bottom:20px;
+        }
+        button:hover{
+            opacity: 0.4;
+        }
+        #btnNo{
+            background-color: #eb4034;
+        }
+
+        #btnStart{
+            background-color: #6b9fc9;
         }
     </style>
 </head>
@@ -28,9 +47,11 @@
 <body>
     <div>
         <h1>random menu</h1>
+        <button id="btnNo">No meat</button>
+        <button id="btnStart">Start</button>
         <br />
-        <div id="name">
-            <p id="text"></p>
+        <div>
+            <p id="Text">버튼을 누르세요</p>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
