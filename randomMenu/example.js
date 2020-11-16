@@ -7,6 +7,6 @@ window.onload = function () {
 
 function randMenu() {
     const $menuText = document.getElementById("text");
-    const i = Math.floor(Math.random()*6);
+    const i = Math.floor(Math.random()*9);
     $menuText.textContent = menuList[i];
 }
