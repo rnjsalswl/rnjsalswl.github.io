@@ -8,7 +8,7 @@ HTMLElement.prototype.css = function (object){
 
 
 window.onload = function() {
-    document.getElementById("btnStart").addEventListener("click", mkChessBoard)
+    document.getElementById("btnStart").addEventListener("click", mkChessBoard, {once:true});
     // mkChessBoard();
 }
 // function mkChessPiece(){
