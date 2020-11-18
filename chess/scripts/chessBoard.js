@@ -5,7 +5,7 @@ HTMLElement.prototype.css = function (object) {
     }
     return this;
 }
-
+//pawn은 처음 움직일때만 2칸 가능 다음부턴 1칸씩만 이동
 
 window.onload = function () {
     document.getElementById("btnStart").addEventListener("click", mkChessBoard, { once: true });
@@ -51,17 +51,17 @@ function mvChessBPiece() {
         if (count % 2 === 0) {
             frontCell.parentNode.nextSibling.children[pickCell].classList.add("now");
             // console.log(frontCell.parentNode.nextSibling.children[pickCell]);
-            frontCell.parentNode.nextSibling.children[pickCell].addEventListener("click", dropPawn);
+            frontCell.parentNode.nextSibling.children[pickCell].addEventListener("click", dropPawnOnce);
         } else {
             frontCell.parentNode.nextSibling.children[pickCell].classList.remove("now");
-            frontCell.addEventListener("click", dropPawnOne);
+            frontCell.addEventListener("click", dropPawn);
         }
     }else if(pieceName === "Brook"){
         console.log("rook");
     }
 }
 
-function dropPawn() {
+function dropPawnOnce() {
     for (let i = 2; document.getElementsByClassName("now").length > 0; i--) {
         // console.log(document.getElementsByClassName("now")[i]);
         document.getElementsByClassName("now")[i].classList.remove("now");
@@ -81,7 +81,7 @@ function dropPawn() {
         }
     }
 }
-function dropPawnOne(){
+function dropPawn(){
     for (let i = 1; document.getElementsByClassName("now").length > 0; i--) {
         // console.log(document.getElementsByClassName("now")[i]);
         document.getElementsByClassName("now")[i].classList.remove("now");
