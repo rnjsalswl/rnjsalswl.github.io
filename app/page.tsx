@@ -21,10 +21,9 @@ function ProjectSection({ p, index }: { p: Project; index: number }) {
           <p className="tagline">{p.tagline}</p>
           <p className="summary">{p.summary}</p>
 
-          <div className="hypothesis">
-            <span>{p.hypothesisLabel}</span>
-            <p>{p.hypothesis}</p>
-          </div>
+          <p className="fix-count">
+            점검하면서 직접 찾아 고친 취약점 <strong>{p.fixes.length}건</strong>
+          </p>
 
           <div className="links">
             {p.live && (
@@ -55,7 +54,20 @@ function ProjectSection({ p, index }: { p: Project; index: number }) {
         </div>
       </div>
 
-      <h3 className="sub">핵심 결정</h3>
+      <h3 className="sub">점검하면서 고친 것</h3>
+      <ol className="decisions fixes">
+        {p.fixes.map((d, i) => (
+          <li key={d.what}>
+            <span className="big-no">{no(i)}</span>
+            <div>
+              <strong>{d.what}</strong>
+              <p>{d.why}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <h3 className="sub">설계에서 신경 쓴 것</h3>
       <ol className="decisions">
         {p.decisions.map((d, i) => (
           <li key={d.what}>
@@ -78,7 +90,7 @@ function ProjectSection({ p, index }: { p: Project; index: number }) {
           </ul>
         </div>
         <div>
-          <h3 className="sub">한계와 다음 단계</h3>
+          <h3 className="sub">아직 남은 것</h3>
           <ul className="arrow">
             {p.limits.map((l) => (
               <li key={l}>{l}</li>
