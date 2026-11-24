@@ -27,7 +27,7 @@ export const profile = {
   facts: [
     "실무 5년 8개월",
     "네트워크 보안 장비 → 메시징 플랫폼 → 인증서 관리(CLM)",
-    "아래 프로젝트는 모두 본인 기여 100%",
+    "아래 프로젝트는 모두 1인 개발",
   ],
   github: "https://github.com/rnjsalswl",
   email: "alswl11317@gmail.com",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
       },
       {
         what: "권한을 DB 정책(RLS)으로",
-        why: "테이블 14개에 정책 29개. 같은 모임 멤버만 서로의 기록을 보도록 앱이 아니라 DB가 막음.",
+        why: "테이블 14개에 정책 30개. 같은 모임 멤버만 서로의 기록을 보도록 앱이 아니라 DB가 막음.",
       },
       {
         what: "경험치·배지 계산을 서버 함수로",
