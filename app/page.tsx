@@ -1,6 +1,7 @@
 import { profile, projects, type Project } from "./data";
 import { TrackedLink } from "./links";
 import { Nav } from "./nav";
+import { Tenure } from "./tenure";
 
 const no = (i: number) => String(i + 1).padStart(2, "0");
 
@@ -116,6 +117,9 @@ export default function Home() {
             개발자 <em>{profile.name}</em>입니다.
           </h1>
           <ul className="facts">
+            <li>
+              <Tenure start={profile.careerStart} />
+            </li>
             {profile.facts.map((f) => (
               <li key={f}>{f}</li>
             ))}
