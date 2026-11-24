@@ -61,13 +61,14 @@ export const projects: Project[] = [
         why: "공유 시크릿 헤더가 프론트 번들에 노출되는 걸 발견하고 JWT + 서버 측 관리자 목록으로 교체, 테스트로 확인.",
       },
     ],
-    results: ["Railway에 배포, PWA로 홈 화면 설치 가능"],
+    results: ["herenote.vercel.app에서 서비스 중, PWA로 홈 화면 설치 가능"],
     limits: [
       "서버가 폰의 좌표를 믿기 때문에 GPS 위조 앱은 못 막음 → 비정상 이동 감지 필요",
       "로그인 시도 횟수 제한, CORS 범위 축소가 다음 과제",
     ],
     stack: ["Go", "Gin", "PostgreSQL", "PostGIS", "JWT", "Vue 3", "Kakao Map"],
     repo: "https://github.com/rnjsalswl/herenote",
+    live: "https://herenote.vercel.app",
     screens: [
       { caption: "홈 — 지도와 주변 장소" },
       { caption: "위치 인증" },
