@@ -109,7 +109,7 @@ export const projects: Project[] = [
     ],
     limits: ["모임 초대는 아직 DB에 직접 추가해야 함 → 이메일 초대 흐름이 다음 과제"],
     stack: ["Flutter", "Dart", "Supabase", "PostgreSQL", "RLS", "Realtime", "Riverpod"],
-    repo: "https://github.com/rnjsalswl/book-journal/tree/flutter-pixel-book-journal",
+    repo: "https://github.com/rnjsalswl/Book-journal",
     live: "https://rnjsalswl.github.io/Book-journal/",
     screens: [
       { caption: "픽셀 도서관 맵" },

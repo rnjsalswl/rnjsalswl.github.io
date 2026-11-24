@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "권민지 포트폴리오",
-  description: "화면부터 API·데이터·배포까지 혼자 완결하는 개발자 권민지의 프로젝트",
+  description: "개발자 권민지의 포트폴리오",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,73 +1,84 @@
 import { profile, projects, type Project } from "./data";
 import { TrackedLink } from "./links";
+import { Nav } from "./nav";
+
+const no = (i: number) => String(i + 1).padStart(2, "0");
 
 function ProjectSection({ p, index }: { p: Project; index: number }) {
   return (
-    <section id={p.id} className="project">
-      <header className="project-head">
-        <span className="project-no">{String(index + 1).padStart(2, "0")}</span>
-        <div>
-          <h2>{p.name}</h2>
+    <section id={p.id} className="slide project">
+      <p className="kicker">
+        <span className="kicker-mark" aria-hidden />
+        Project {no(index)}
+      </p>
+
+      <div className="project-top">
+        <div className="project-text">
+          <h2>
+            <em>{p.name}</em>
+          </h2>
           <p className="tagline">{p.tagline}</p>
-        </div>
-      </header>
+          <p className="summary">{p.summary}</p>
 
-      <p className="summary">{p.summary}</p>
+          <div className="hypothesis">
+            <span>{p.hypothesisLabel}</span>
+            <p>{p.hypothesis}</p>
+          </div>
 
-      <div className="links">
-        {p.live && (
-          <TrackedLink href={p.live} project={p.id} kind="live" className="btn btn-primary">
-            서비스 열기
-          </TrackedLink>
-        )}
-        <TrackedLink href={p.repo} project={p.id} kind="repo" className="btn">
-          GitHub
-        </TrackedLink>
-      </div>
-
-      <div className={`screens screens-${p.screenShape}`}>
-        {p.screens.map((s) => (
-          <figure key={s.caption} className="screen">
-            {s.src ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={`/screens/${s.src}`} alt={s.caption} loading="lazy" />
-            ) : (
-              <div className="screen-empty" aria-hidden />
+          <div className="links">
+            {p.live && (
+              <TrackedLink href={p.live} project={p.id} kind="live" className="btn btn-primary">
+                서비스 열기
+              </TrackedLink>
             )}
-            <figcaption>{s.caption}</figcaption>
-          </figure>
-        ))}
-      </div>
+            <TrackedLink href={p.repo} project={p.id} kind="repo" className="btn">
+              GitHub
+            </TrackedLink>
+          </div>
+        </div>
 
-      <div className="block">
-        <h3>{p.hypothesisLabel}</h3>
-        <p className="hypothesis">{p.hypothesis}</p>
-      </div>
-
-      <div className="block">
-        <h3>핵심 결정</h3>
-        <ul className="decisions">
-          {p.decisions.map((d) => (
-            <li key={d.what}>
-              <strong>{d.what}</strong>
-              <span>{d.why}</span>
-            </li>
+        <div className={`screens screens-${p.screenShape}`}>
+          {p.screens.map((s) => (
+            <figure key={s.caption} className="screen">
+              <div className="device">
+                {s.src ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={`/screens/${s.src}`} alt={s.caption} loading="lazy" />
+                ) : (
+                  <div className="screen-empty" aria-hidden />
+                )}
+              </div>
+              <figcaption>{s.caption}</figcaption>
+            </figure>
           ))}
-        </ul>
+        </div>
       </div>
 
-      <div className="block two-col">
+      <h3 className="sub">핵심 결정</h3>
+      <ol className="decisions">
+        {p.decisions.map((d, i) => (
+          <li key={d.what}>
+            <span className="big-no">{no(i)}</span>
+            <div>
+              <strong>{d.what}</strong>
+              <p>{d.why}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div className="two-col">
         <div>
-          <h3>결과</h3>
-          <ul className="plain">
+          <h3 className="sub">결과</h3>
+          <ul className="arrow">
             {p.results.map((r) => (
               <li key={r}>{r}</li>
             ))}
           </ul>
         </div>
         <div>
-          <h3>한계와 다음 단계</h3>
-          <ul className="plain">
+          <h3 className="sub">한계와 다음 단계</h3>
+          <ul className="arrow">
             {p.limits.map((l) => (
               <li key={l}>{l}</li>
             ))}
@@ -85,45 +96,77 @@ function ProjectSection({ p, index }: { p: Project; index: number }) {
 }
 
 export default function Home() {
+  const navItems = [
+    { id: "profile", label: "Profile" },
+    ...projects.map((p) => ({ id: p.id, label: p.name })),
+    { id: "contact", label: "Contact" },
+  ];
+
   return (
-    <main>
-      <section className="hero">
-        <p className="eyebrow">Portfolio</p>
-        <h1>
-          {profile.name}
-          <span>{profile.role}</span>
-        </h1>
-        <p className="intro">{profile.intro}</p>
-        <ul className="facts">
-          {profile.facts.map((f) => (
-            <li key={f}>{f}</li>
-          ))}
-        </ul>
-        <div className="links">
-          <TrackedLink href={profile.github} kind="github" className="btn">
-            GitHub
-          </TrackedLink>
-          <TrackedLink href={`mailto:${profile.email}`} kind="email" className="btn">
-            {profile.email}
-          </TrackedLink>
-        </div>
-      </section>
+    <>
+      <Nav name={profile.name} items={navItems} />
+      <main>
+        <section id="profile" className="slide hero">
+          <span className="watermark" aria-hidden>
+            PORTFOLIO
+          </span>
+          <h1>
+            반갑습니다.
+            <br />
+            개발자 <em>{profile.name}</em>입니다.
+          </h1>
+          <ul className="facts">
+            {profile.facts.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+          <p className="intro">{profile.intro}</p>
+          <div className="links">
+            <TrackedLink href={profile.github} kind="github" className="btn">
+              GitHub
+            </TrackedLink>
+            <TrackedLink href={`mailto:${profile.email}`} kind="email" className="btn">
+              {profile.email}
+            </TrackedLink>
+          </div>
 
-      <nav className="toc" aria-label="프로젝트">
+          <div className="toc">
+            {projects.map((p, i) => (
+              <TrackedLink key={p.id} href={`#${p.id}`} project={p.id} kind="toc" className="toc-item">
+                <span className="big-no">{no(i)}</span>
+                <span>
+                  <strong>{p.name}</strong>
+                  <small>{p.tagline}</small>
+                </span>
+              </TrackedLink>
+            ))}
+          </div>
+        </section>
+
         {projects.map((p, i) => (
-          <TrackedLink key={p.id} href={`#${p.id}`} project={p.id} kind="toc" className="toc-card">
-            <span className="project-no">{String(i + 1).padStart(2, "0")}</span>
-            <strong>{p.name}</strong>
-            <span>{p.tagline}</span>
-          </TrackedLink>
+          <ProjectSection key={p.id} p={p} index={i} />
         ))}
-      </nav>
 
-      {projects.map((p, i) => (
-        <ProjectSection key={p.id} p={p} index={i} />
-      ))}
-
-      <footer>© {new Date().getFullYear()} {profile.name}</footer>
-    </main>
+        <section id="contact" className="slide closing">
+          <span className="watermark" aria-hidden>
+            PORTFOLIO
+          </span>
+          <p className="closing-text">
+            끝까지 읽어주셔서
+            <br />
+            <em>감사합니다.</em>
+          </p>
+          <div className="links center">
+            <TrackedLink href={`mailto:${profile.email}`} kind="email" className="btn btn-primary">
+              {profile.email}
+            </TrackedLink>
+            <TrackedLink href={profile.github} kind="github" className="btn">
+              GitHub
+            </TrackedLink>
+          </div>
+          <footer>© {new Date().getFullYear()} {profile.name}</footer>
+        </section>
+      </main>
+    </>
   );
 }
